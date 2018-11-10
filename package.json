@@ -1,0 +1,26 @@
+{
+  "name": "create-map-reducer",
+  "version": "1.1.2",
+  "main": "src/index.js",
+  "description": "A common utility to create high performance reducer",
+  "author": "Lidor Avitan",
+  "repository": "https://github.com/lidoravitan/create-map-reducer",
+  "devDependencies": {
+    "jest": "^23.6.0"
+  },
+  "scripts": {
+    "test": "jest --coverage",
+    "test:watch": "jest --watchAll --coverage"
+  },
+  "keywords": [
+    "redux",
+    "reducer",
+    "createReducer",
+    "create-reducer",
+    "state",
+    "predictable",
+    "functional",
+    "immutable"
+  ],
+  "license": "MIT"
+}
