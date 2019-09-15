@@ -23,7 +23,7 @@ A common utility to create high performance reducer, super lightweight without a
 
 ## Usage :guitar:
 ```js
-import createReducer from 'create-map-reducer'
+import { createReducer } from 'create-map-reducer'
 const initialState = // initial state 
 const actionMaps = {
     ['ACTION_TYPE']: (prevState, action) => // return updated state
