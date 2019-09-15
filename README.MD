@@ -1,5 +1,5 @@
 
-# Create Map Reducer 
+# Create Map Reducer (TypeScript support:fire:)
 A common utility to create high performance reducer, super lightweight without any dependencies. :rocket::fire: [Github](https://github.com/lidoravitan/create-map-reducer)
 ## Installation :floppy_disk:
 
