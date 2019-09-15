@@ -50,7 +50,7 @@ export default createReducer<State, Actions>({ counter: 0 },
 )
 ```
 
-## Usage (vanila)
+## Usage (Vanilla JS)
 ```js
 import { createReducer } from 'create-map-reducer'
 const initialState = // initial state 
