@@ -21,7 +21,36 @@ A common utility to create high performance reducer, super lightweight without a
 * Leads developers for good practice
 * Instead of declare createReducer utility function for each project and import from local folder (utility folder path).
 
-## Usage :guitar:
+## Usage :guitar: (TypeScript)
+```js
+import { createReducer, Action } from 'create-map-reducer'
+
+type State = { counter: number }
+
+const INCREMENT = 'INCREMENT'
+const DECREMENT = 'DECREMENT'
+
+class Increment implements Action {
+  readonly type = INCREMENT
+  constructor(public readonly increment: number) {}
+}
+
+class Decrement implements Action {
+  readonly type = DECREMENT
+  constructor(public readonly decrement: number) {}
+}
+
+type Actions = Increment | Decrement
+
+export default createReducer<State, Actions>({ counter: 0 },
+  {
+    [INCREMENT]: (state, action) => ({ counter: state.counter + action.increment }),
+    [DECREMENT]: (state, action) => ({ counter: state.counter + action.decrement })
+  }
+)
+```
+
+## Usage (vanila)
 ```js
 import { createReducer } from 'create-map-reducer'
 const initialState = // initial state 
