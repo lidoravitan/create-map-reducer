@@ -1,4 +1,4 @@
-const createReducer = require('../src')
+const { createReducer } = require('../src')
 
 const INCREMENT = 'INCREMENT'
 const increment = { type: INCREMENT }
