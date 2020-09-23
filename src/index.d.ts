@@ -12,4 +12,4 @@ export declare type Handlers<S, A extends Action = ExtAction> = {
 export declare function createReducer<S, A extends Action = ExtAction>(
   initialState: S,
   handlers: Handlers<S, A>
-): (state: S | undefined, action: A) => any
+): (state: S | undefined, action: A) => S

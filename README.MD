@@ -1,63 +1,80 @@
+# Create Map Reducer
+A common utility to create high performance reducer, super lightweight without any dependencies. [Github](https://github.com/lidoravitan/create-map-reducer)
 
-# Create Map Reducer (TypeScript support:fire:)
-A common utility to create high performance reducer, super lightweight without any dependencies. :rocket::fire: [Github](https://github.com/lidoravitan/create-map-reducer)
-## Installation :floppy_disk:
+## Installation
+```
+npm install create-map-reducer or
+yarn add create-map-reducer
+```
 
-    npm install create-map-reducer
-    yarn add create-map-reducer
+## Usage
 
-## Motivation :muscle:
-**As mentioned in redux documentations:**
-
->  "since many people don't like switch statements, it's very common to
-> use a function that creates a lookup table of action types to case
-> functions. We'll use the createReducer function described in Reducing
-> Boilerplate."
-
-[reference](https://redux.js.org/recipes/structuringreducers/refactoringreducersexample#reducing-boilerplate)
-
-## Benefits :gift:
-* Reducing Boilerplate
-* Leads developers for good practice
-* Instead of declare createReducer utility function for each project and import from local folder (utility folder path).
-
-## Usage :guitar: (TypeScript)
-```js
-import { createReducer, Action } from 'create-map-reducer'
-
-type State = { counter: number }
-
-const INCREMENT = 'INCREMENT'
-const DECREMENT = 'DECREMENT'
-
-class Increment implements Action {
-  readonly type = INCREMENT
-  constructor(public readonly increment: number) {}
+```ts
+export enum ActionTypes {
+  INCREMENT_BY = 'INCREMENT_BY',
+  DECREMENT_BY = 'DECREMENT_BY',
+  SET_COUNTER_NAME = 'SET_COUNTER_NAME',
 }
 
-class Decrement implements Action {
-  readonly type = DECREMENT
-  constructor(public readonly decrement: number) {}
-}
+export const incrementByAction = (value: number) =>
+  <const>{
+    type: ActionTypes.INCREMENT_BY,
+    value,
+  }
+
+export const decrementByAction = (value: number) =>
+  <const>{
+    type: ActionTypes.DECREMENT_BY,
+    value,
+  }
+
+export const setCounterNameAction = (title: string) =>
+  <const>{
+    type: ActionTypes.SET_COUNTER_NAME,
+    title,
+  }
+
+export type Actions = ReturnType<
+  | typeof setCounterNameAction
+  | typeof incrementByAction
+  | typeof decrementByAction
+>
 
 type Actions = Increment | Decrement
+```
 
-export default createReducer<State, Actions>({ counter: 0 },
+```ts
+import { createReducer } from 'create-map-reducer'
+import { Actions, ActionTypes } from './actions'
+
+type CounterState = Readonly<{
+  title: string
+  value: number
+}>
+
+const initialState: CounterState = {
+  title: 'my-counter',
+  value: 0,
+}
+
+export const counterReducer = createReducer<CounterState, Actions>(
+  initialState,
   {
-    [INCREMENT]: (state, action) => ({ counter: state.counter + action.increment }),
-    [DECREMENT]: (state, action) => ({ counter: state.counter + action.decrement })
+    [ActionTypes.DECREMENT_BY]: (state, action) => ({
+      ...state,
+      value: action.value,
+    }),
+    [ActionTypes.INCREMENT_BY]: (state, action) => ({
+      ...state,
+      value: action.value,
+    }),
+    [ActionTypes.SET_COUNTER_NAME]: (state, action) => ({
+      ...state,
+      title: action.title,
+    }),
   }
 )
 ```
 
-## Usage (Vanilla JS)
-```js
-import { createReducer } from 'create-map-reducer'
-const initialState = // initial state 
-const actionMaps = {
-    ['ACTION_TYPE']: (prevState, action) => // return updated state
-}
-export default createReducer(initialState, actionMaps)
-```
 ### License 
 MIT
